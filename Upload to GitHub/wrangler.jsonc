@@ -1,0 +1,10 @@
+// Cloudflare Workers deploy: serve the built site (dist/) as static assets.
+// `name` must match the Worker's name in the Cloudflare dashboard.
+{
+  "name": "adamexpo",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  }
+}
