@@ -1,0 +1,6 @@
+# Netlify builds the site and publishes only the built output (dist/).
+# Not needed for drag-and-drop deploys of the dist folder; used when the
+# project is connected from Git or deployed with the Netlify CLI.
+[build]
+  command = "npm run build"
+  publish = "dist"

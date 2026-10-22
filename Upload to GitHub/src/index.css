@@ -1,0 +1,330 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/inter/opsz.css";
+@import "@fontsource-variable/lora/wght-italic.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Adamexpo brand tokens. Every section pulls colour and type from here. */
+@theme {
+    /* Type: Inter for headings, nav, labels and body (optical sizes tighten it at
+       display sizes); Lora italic as the accent for key words inside a heading. */
+    --font-display: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-label: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-accent: 'Lora Variable', 'Lora', Georgia, serif;
+
+    /* Palette: tea-leaf greens and warm beige */
+    --color-ink: #13261c;           /* deep tea-leaf green: dark surfaces, overlays */
+    --color-forest: #2d4a36;        /* muted forest green: text and lines on beige */
+    --color-beige: #ece7da;         /* warm beige: light section backgrounds */
+    --color-paper: #f6f3eb;         /* lighter beige: raised panels on beige */
+    --color-cream: #f5f0e3;         /* light text on green and video */
+    --color-cream-dim: rgb(245 240 227 / 0.66);
+    --color-hairline: rgb(245 240 227 / 0.18);
+    /* Aurora (footer panel and menu): green bridged through teal and slate-violet to plum */
+    --color-aurora-moss: #3d6a48;
+    --color-aurora-sage: #6f9466;
+    --color-aurora-teal: #2f5d5a;
+    --color-aurora-dusk: #45507a;
+    --color-aurora-plum: #6a4f86;
+    --color-aurora-glow: #d9cdb0;
+
+    --ease-cta: cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+@theme inline {
+    --font-heading: var(--font-display);
+    --font-sans: var(--font-label);
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --radius: 0.625rem;
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.205 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.205 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.922 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.556 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    }
+  body {
+    @apply bg-beige text-forest;
+    }
+  html {
+    --hero-mx: clamp(16px, 5.5vw, 160px);
+    @apply font-sans;
+    }
+}
+
+@layer components {
+  /* Masked line reveal: GSAP slides .line-in up from below the .line-mask */
+  .line-mask {
+    display: block;
+    overflow: hidden;
+    /* room for ascenders and descenders (y, g, p) so the mask never clips the settled glyphs */
+    padding-block: 0.06em 0.12em;
+    margin-block: -0.06em -0.12em;
+  }
+  .line-in {
+    display: block;
+    will-change: transform;
+  }
+
+  /* Label "roll" hover: the text slides up and a copy rolls in from below */
+  .roll {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    vertical-align: top;
+  }
+  .roll > span {
+    display: block;
+    transition: transform 0.5s var(--ease-cta);
+  }
+  .roll > span:last-child {
+    position: absolute;
+    inset: 0;
+    transform: translateY(100%);
+  }
+  .has-roll:hover .roll > span:first-child,
+  .has-roll:focus-visible .roll > span:first-child {
+    transform: translateY(-100%);
+  }
+  .has-roll:hover .roll > span:last-child,
+  .has-roll:focus-visible .roll > span:last-child {
+    transform: translateY(0);
+  }
+
+  /* Scramble: per-character spans with locked widths, unresolved glyphs dimmed */
+  .sc {
+    display: inline-block;
+    text-align: center;
+    transition: opacity 0.12s linear;
+  }
+  .sc.u {
+    opacity: 0.4;
+  }
+
+  .scroll-tick {
+    animation: scroll-tick 1.9s var(--ease-cta) infinite;
+  }
+
+  /* Lora italic accent for key words inside a sentence-case Inter heading */
+  .accent-word {
+    font-family: var(--font-accent);
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    font-size: 1.04em;
+    line-height: 0;
+  }
+
+  /* Hero video shading, tinted with the deep green so it reads as one palette */
+  .hero-shade-top {
+    background: linear-gradient(180deg,
+      color-mix(in oklab, var(--color-ink) 68%, transparent) 0%,
+      color-mix(in oklab, var(--color-ink) 30%, transparent) 24%,
+      color-mix(in oklab, var(--color-ink) 18%, transparent) 42%,
+      color-mix(in oklab, var(--color-ink) 50%, transparent) 70%,
+      color-mix(in oklab, var(--color-ink) 88%, transparent) 100%);
+  }
+  .hero-shade-left {
+    background: linear-gradient(90deg,
+      color-mix(in oklab, var(--color-ink) 50%, transparent) 0%,
+      color-mix(in oklab, var(--color-ink) 22%, transparent) 50%,
+      transparent 78%);
+  }
+  .hero-vignette {
+    background: radial-gradient(130% 100% at 50% 30%, transparent 55%,
+      color-mix(in oklab, var(--color-ink) 50%, transparent) 100%);
+  }
+}
+
+/* Focus-pull carousel overrides. Unlayered on purpose: the component injects its own
+   unlayered <style>, which would beat anything inside a Tailwind layer. */
+/* Transparent so the scroll-driven ingredient layer shows through the side margins */
+.fp-root.products-carousel {
+  background: transparent;
+}
+.products-carousel .fp-card {
+  max-height: none; /* the section sizes the carousel height to the card instead */
+}
+.products-carousel .fp-meta {
+  padding-inline: var(--hero-mx);
+}
+.products-carousel .fp-bar {
+  margin-inline: var(--hero-mx);
+}
+/* Carousel text in the site type system (colours come from its background/ink props) */
+.products-carousel .fp-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+.products-carousel .fp-sub {
+  font-family: var(--font-label);
+}
+.products-carousel .fp-count {
+  font-family: var(--font-label);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+@keyframes scroll-tick {
+  0%, 100% { opacity: 0.4; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(3px); }
+}
+
+/* Infinite logo marquee. The track holds two identical groups and slides by
+   exactly one group's width (-50%), so the loop has no seam. Each group carries
+   trailing padding equal to the item gap, keeping spacing even across the join. */
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-duration, 48s) linear infinite;
+}
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+/* Fade-in for a tab panel as it becomes visible. Panels stay mounted and are
+   toggled with [hidden]; leaving display:none restarts the animation. */
+.panel-in {
+  animation: panel-in 0.42s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes panel-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Aurora (footer and menu): soft blurred blobs drifting slowly; colours in components/ui/aurora.tsx */
+.aurora-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  animation: aurora-drift 26s ease-in-out infinite alternate;
+}
+@keyframes aurora-drift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(6%, -8%, 0) scale(1.12); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-tick { animation: none; }
+  .aurora-blob { animation: none; }
+  .panel-in { animation: none; }
+  .roll > span { transition: none; }
+  /* No auto-scroll: the logos become a strip the visitor can scroll themselves */
+  .marquee { overflow-x: auto; }
+  .marquee-track { animation: none; }
+}
